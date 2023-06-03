@@ -1,5 +1,10 @@
 var socket = io();
 
+socket.on("answer", function(data){
+  console.log("recieved");
+  console.log(data["data"]);
+  
+});
 
 document.getElementById("file").addEventListener("change", function(event){
   document.getElementById("file").files[0].arrayBuffer().then(function(result){

@@ -6,8 +6,20 @@
 <div class="titleContainer">
   <p class="titleBlock">Sousho Reader AI</p>
 </div>
-  <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
-  <img id="showImage">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<div id="applicationArea">
+  <div id="imageArea">
+    <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
+    <div id="questionImageHolder">
+      <img id="showImage">
+    </div>
+  </div>
+  <div id="predictionArea">
+    
+  </div>
+</div>
+  
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="{{url_for('static',filename='home.js')}}"></script>
 {% endblock %}

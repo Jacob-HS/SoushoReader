@@ -1,10 +1,47 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(1, 156, 1);
+  background-color: rgb(43, 45, 43);
 }
 .titleContainer{
   text-align: center;
+  color: white;
 }
 .titleBlock {
+  margin: 2vh;
   font-size: 4vw;
+}
+
+#showImage{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#imageArea{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  width: 30%;
+}
+#file{
+  text-align: center;
+  font-size: 2vw;
+}
+#predictionArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid white;
+  width: 70%;
+}
+#applicationArea {
+  display: flex;
+  flex-direction: row;
+}
+#questionImageHolder{
+  margin-top: 10vh;
+  height: 40vh;
+  width:90%;
+  border: 3px solid white;
 }
