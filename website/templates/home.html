@@ -8,18 +8,34 @@
 </div>
 <div id="applicationArea">
   <div id="imageArea">
-    <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
+    <div id="uploadContainer">
+      
+    </div>
+    <div id="fileHolder">
+      <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
+    </div>
+    
     <div id="questionImageHolder">
+      <div id="dragAndDropLabel">Or, <br/> drag and drop an image</div>
       <img id="showImage">
     </div>
   </div>
   <div id="predictionArea">
-    
+    <div id="predictionTopBar">
+      <div id="pred1" class="prediction"></div>
+      <div id="pred2" class="prediction"></div>
+      <div id="pred3" class="prediction"></div>
+      <div id="pred4" class="prediction"></div>
+      <div id="pred5" class="prediction"></div>
+    </div>
   </div>
 </div>
-  
-  
-
+<div>
+  <img id="testImage">
+</div>
+  <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
   <script type="text/javascript" src="{{url_for('static',filename='home.js')}}"></script>
+
 {% endblock %}
