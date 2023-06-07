@@ -20,8 +20,11 @@ document.getElementById("file").addEventListener("change", function(event){
     document.getElementById("testImage").src=imageUrl;
     let image = document.getElementById("testImage");
     const cropper = new Cropper(image, {
-      autoCrop: false,
-      aspectRatio: 1
+      autoCrop: true,
+      autoCropArea: 1,
+      viewMode: 2,
+      movable: false,
+      zoomable: false
     });
     const test= [...final];
     console.log(test);
