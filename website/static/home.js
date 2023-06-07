@@ -1,7 +1,7 @@
 
 
 var socket = io();
-
+let cropper;
 socket.on("answer", function(data){
   console.log("recieved");
   console.log(data["data"]);
@@ -15,20 +15,8 @@ document.getElementById("file").addEventListener("change", function(event){
     var blob = new Blob( [ final ], { type: "image/jpeg" } );
     var urlCreator = window.URL || window.webkitURL;
     var imageUrl = urlCreator.createObjectURL( blob );
-    var img = document.getElementById("showImage");
-    img.src = imageUrl;
     document.getElementById("testImage").src=imageUrl;
-    let image = document.getElementById("testImage");
-    const cropper = new Cropper(image, {
-      autoCrop: true,
-      autoCropArea: 1,
-      viewMode: 2,
-      movable: false,
-      zoomable: false
-    });
-    const test= [...final];
-    console.log(test);
-    socket.emit("askQuestion", {"data": test}); 
+    cropImage();
   });
   
 });
@@ -57,15 +45,46 @@ document.getElementById("questionImageHolder").addEventListener("drop", function
     var blob = new Blob( [ final ], { type: "image/jpeg" } );
     var urlCreator = window.URL || window.webkitURL;
     var imageUrl = urlCreator.createObjectURL( blob );
-    var img = document.getElementById("showImage");
-    img.src = imageUrl;
     document.getElementById("testImage").src=imageUrl;
-    const test= [...final];
-    console.log(test);
-    socket.emit("askQuestion", {"data": test}); 
+    cropImage(); 
   });
 });
 
+document.getElementById("submitCropButton").addEventListener("click", () => {
+  let result = cropper.getCroppedCanvas({fillColor: "white"});
+  let img = document.getElementById("showImage");
+  img.src = result.toDataURL();
+  result.toBlob(tempblob => {
+    tempblob.arrayBuffer().then(arr => {
+      var final = new Uint8Array(arr);
+      const test = [...final];
+      socket.emit("askQuestion", {"data": test});
+    });
+  });
+  cropper.destroy();
+  document.getElementById("cropPopupArea").classList.add("hidden");
+});
+
+function cropImage(){
+  console.log("fuck");
+  document.getElementById("cropPopupArea").classList.remove("hidden");
+  img=document.getElementById("testImage");
+  let image = document.getElementById("testImage");
+    cropper = new Cropper(image, {
+        autoCrop: true,
+        autoCropArea: .8,
+        viewMode: 2,
+        movable: false,
+        minContainerWidth: 0,
+        highlight: false,
+        zoomable: false,
+        ready(){
+          cropper.setCanvasData({ height: img.clientHeight, width: img.clientWidth  });
+        }
+      
+    });
+  document.getElementById("file").value="";
+}
 
 function displayQuestionImage(){
   document.getElementById("dragAndDropLabel").style.display="none";

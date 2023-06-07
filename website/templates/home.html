@@ -6,6 +6,17 @@
 <div class="titleContainer">
   <p class="titleBlock">Sousho Reader AI</p>
 </div>
+<div id="cropPopupArea" class="hidden">
+  <div id="cropPopupContainer">
+    <p id="cropPopupHeader">Crop Image</p>
+    <div id="cropImageContainer">
+      <img id="testImage">
+    </div>
+    <br/>
+    <button id="submitCropButton">Done</button>
+  </div>
+</div>
+
 <div id="applicationArea">
   <div id="imageArea">
     <div id="uploadContainer">
@@ -30,9 +41,7 @@
     </div>
   </div>
 </div>
-<div style="display: inline-block; max-height: 40vh;">
-  <img id="testImage">
-</div>
+
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
