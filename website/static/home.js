@@ -2,11 +2,15 @@
 
 var socket = io();
 let cropper;
+let sampleImageData;
+let preloadedImages = [];
 socket.on("answer", function(data){
   console.log("recieved");
-  console.log(data["data"]);
-  displayQuestionImage();
-  displayAnswers(data["data"]);
+  console.log(data);
+  sampleImageData=data;
+  displayAnswers(Object.keys(data));
+  preloadImages(sampleImageData);
+  displaySampleImages(sampleImageData, 0);
 });
 
 document.getElementById("file").addEventListener("change", function(event){
@@ -72,6 +76,35 @@ document.getElementById("pred3").addEventListener("click",()=>switchActiveAnswer
 document.getElementById("pred4").addEventListener("click",()=>switchActiveAnswer(4));
 document.getElementById("pred5").addEventListener("click",()=>switchActiveAnswer(5));
 
+function preloadImages(data){
+  preloadedImages = []
+  let keys = Object.keys(data);
+  document.getElementById("preloadContainer").innerHTML="";
+  for (let i=0;i<5;i++){;
+    console.log(i);
+    for (const [index, fileName] of data[keys[i]].entries()){
+      let uni='U+'+((keys[i].charCodeAt(0)).toString(16)).toUpperCase();
+      var x = document.createElement("IMG");
+      x.src='static\\samples\\'+uni+'\\'+fileName;
+
+      document.getElementById("preloadContainer").appendChild(x);
+    }
+  }
+  
+}
+
+function displaySampleImages(data, idx){
+  let keys = Object.keys(data);
+  for (const [index, fileName] of data[keys[idx]].entries()){
+    let uni='U+'+((keys[idx].charCodeAt(0)).toString(16)).toUpperCase();
+    console.log('samples\\'+uni+'\\'+fileName);
+    document.getElementsByClassName("sampleImage"+index)[0].src='static\\samples\\'+uni+'\\'+fileName;
+  }
+  //for (const key of keys){
+  //  
+  //}
+}
+
 function switchActiveAnswer (num){
   if (document.getElementById("pred"+num).innerHTML === "") return
   if (document.getElementById("pred"+num).classList.contains("activePrediction")) return
@@ -80,7 +113,7 @@ function switchActiveAnswer (num){
     document.getElementById("pred"+i).classList.remove("activePrediction");
   }
   document.getElementById("pred"+num).classList.add("activePrediction");
-  
+  displaySampleImages(sampleImageData, num-1);
 }
 
 function cropImage(){
@@ -102,6 +135,7 @@ function cropImage(){
       
     });
   document.getElementById("file").value="";
+  displayQuestionImage();
 }
 
 function displayQuestionImage(){
