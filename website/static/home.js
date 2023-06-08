@@ -51,10 +51,11 @@ document.getElementById("questionImageHolder").addEventListener("drop", function
 });
 
 document.getElementById("submitCropButton").addEventListener("click", () => {
-  let result = cropper.getCroppedCanvas({fillColor: "white"});
   let img = document.getElementById("showImage");
-  img.src = result.toDataURL();
-  result.toBlob(tempblob => {
+  let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
+  let resizedResult = cropper.getCroppedCanvas({fillColor: "white", maxWidth: 100, maxHeight: 100});
+  img.src = sameSizeResult.toDataURL('image/jpeg');
+  resizedResult.toBlob(tempblob => {
     tempblob.arrayBuffer().then(arr => {
       var final = new Uint8Array(arr);
       const test = [...final];
@@ -64,6 +65,23 @@ document.getElementById("submitCropButton").addEventListener("click", () => {
   cropper.destroy();
   document.getElementById("cropPopupArea").classList.add("hidden");
 });
+
+document.getElementById("pred1").addEventListener("click",()=>switchActiveAnswer(1));
+document.getElementById("pred2").addEventListener("click",()=>switchActiveAnswer(2));
+document.getElementById("pred3").addEventListener("click",()=>switchActiveAnswer(3));
+document.getElementById("pred4").addEventListener("click",()=>switchActiveAnswer(4));
+document.getElementById("pred5").addEventListener("click",()=>switchActiveAnswer(5));
+
+function switchActiveAnswer (num){
+  if (document.getElementById("pred"+num).innerHTML === "") return
+  if (document.getElementById("pred"+num).classList.contains("activePrediction")) return
+
+  for(let i=1; i<=5; i++){
+    document.getElementById("pred"+i).classList.remove("activePrediction");
+  }
+  document.getElementById("pred"+num).classList.add("activePrediction");
+  
+}
 
 function cropImage(){
   console.log("fuck");
@@ -98,4 +116,5 @@ function displayAnswers(answerList){
     temp.innerHTML=answer;
     i++;
   }
+  document.getElementById("pred1").classList.add("activePrediction");
 }
