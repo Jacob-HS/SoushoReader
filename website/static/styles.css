@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(43, 45, 43);
+  background-color: rgb(20, 20, 20);
 }
 
 .fade-in-right{-webkit-animation:fade-in-right .6s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in-right .6s cubic-bezier(.39,.575,.565,1.000) both}
@@ -18,49 +18,86 @@ body {
 .sampleImage10{animation-delay: 900ms;}
 
 .titleContainer{
-  text-align: center;
   color: white;
 }
 .titleBlock {
   margin: 2vh;
-  font-size: 4vw;
+  font-size: 3vw;
+  margin-bottom: 8vh;
+}
+#vertLine{
+  border-left: 1px solid white;
 }
 
 .fakeImage{
   background-color: rgb(0, 51, 255);
-  height: 10vw;
-  width: 10vw;
+  height: 16vh;
+  width: 16vh;
 }
 
 .sampleImageRow {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+#sampleImageRow1{
+  padding: 5vh 0 2.5vh 0;
 }
 
 #sampleImageRow2{
-  padding: 5vh 0 10vh 0;
+  padding: 2.5vh 0 5vh 0;
+}
+
+#dummyButton{
+  color: white;
+  font-size: 2.5vw;
+  padding: 1.5vh 1.5vw;
+  background-color: rgb(0, 119, 255);
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+}
+
+#dummyButton:hover {
+  background-color: rgb(1, 102, 218);
+  box-shadow: 0 0 2vw .1vw rgba(49, 145, 255, 0.54);
+}
+
+#imageAreaHeader{
+  color: white;
+  margin: 0 0 5vh 0;
+  font-size: 3vw;
+  margin-left: 3vw;
+}
+
+#predictionAreaHeader{
+  color: white;
+  margin: 0 0 5vh 0;
+  font-size: 3vw;
+  margin-left: 3vw;
 }
 
 .prediction{
-  font-size: 3vw;
+  font-size: 7vh;
   text-align: center;
+  background-color: rgb(31, 31, 31);
   width: 6vw;
+  padding: 0 1vw;
   color: white;
-  border-top-right-radius: 2vh;
-  border-top-left-radius: 2vh;
-  background-color: rgb(94, 94, 94);
-  margin: -3px;
+  box-shadow: 0 0 1vw .1vh rgb(0, 136, 255);
+  border-radius: 4vh;
+  margin-bottom: 2vh;
+  cursor:pointer;
 }
 
 .activePrediction{
-  background-color: gray;
-  border-top-right-radius: 2vh;
-  border-top-left-radius: 2vh;
+  text-shadow: 0 0 1vh rgb(255, 121, 31);
+  box-shadow: 0 0 2vw .1vw rgb(255, 121, 31);
 }
 
 #sampleImageContainer{
-  background-color: gray;
+  border: .5vh double white;
+  border-radius: 2vw;
   z-index: 2;
 }
 #testImage{
@@ -70,10 +107,11 @@ body {
 }
 
 #sampleImageHeader{
-  padding: 3% 0 0 10%;
+  padding: 2vh 0 0 2.5vw;
   margin-top: 0;
+  margin-bottom: 0;
   color: white;
-  font-size: 2vw;
+  font-size: 4vh;
 }
 
 #cropPopupContainer {
@@ -129,28 +167,24 @@ body {
 }
 
 #showImage{
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   object-fit: contain;
+  margin:auto;
   border:none;
   display: none;
 }
 
 #imageArea{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
   width: 35vw;
 }
 #file{
-  text-align: center;
-  font-size: 3vh;
+  display: none;
 }
 #predictionArea{
   justify-content: center;
-  border: 3px solid white;
-  width: 60vw;
+  width: 55vw;
+  margin-left: 5vw;
   margin-right: 5vw;
 }
 #applicationArea {
@@ -158,23 +192,30 @@ body {
   flex-direction: row;
 }
 #questionImageHolder{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 5vh;
-  height: 40vh;
-  width:90%;
-  outline: 3px solid white;
+  height: 25vw;
+  width:25vw;
+  border-radius: 2vw;
+  outline: .2vw solid rgb(193, 193, 193);
 }
 #predictionTopBar {
   display: flex;
-  width: 80%;
+  width: 90%;
   z-index: 1;
   margin: auto;
+  height:12.5vh;
   margin-top: 5vh;
   justify-content: space-between;
 }
 #dragAndDropLabel{
   color: rgba(255, 255, 255, 0.198);
-  font-size: 4vw;
+  font-size: 3.5vw;
   font-weight: bold;
+  text-align: center;
   padding: 2vh 1vw 0vh 1vw
 
 }
@@ -183,4 +224,5 @@ body {
   height:10vh;
   margin: none;
   align-items: center;
+  justify-content: center;
 }

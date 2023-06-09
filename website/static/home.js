@@ -54,6 +54,10 @@ document.getElementById("questionImageHolder").addEventListener("drop", function
   });
 });
 
+document.getElementById("dummyButton").addEventListener("click", () => {
+  document.getElementById("file").click();
+});
+
 document.getElementById("submitCropButton").addEventListener("click", () => {
   let img = document.getElementById("showImage");
   let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
@@ -98,7 +102,7 @@ function displaySampleImages(data, idx){
   for (const [index, fileName] of data[keys[idx]].entries()){
     let uni='U+'+((keys[idx].charCodeAt(0)).toString(16)).toUpperCase();
     console.log('samples\\'+uni+'\\'+fileName);
-    document.getElementsByClassName("sampleImage"+index)[0].src='static\\samples\\'+uni+'\\'+fileName;
+    document.getElementsByClassName("sampleImage"+(index+1))[0].src='static\\samples\\'+uni+'\\'+fileName;
   }
   //for (const key of keys){
   //  

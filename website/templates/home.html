@@ -19,19 +19,23 @@
 
 <div id="applicationArea">
   <div id="imageArea">
+    <div id="imageAreaHeader">Upload an Image:</div>
     <div id="uploadContainer">
       
     </div>
     <div id="fileHolder">
+      <button id="dummyButton">Upload File</button>
       <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
     </div>
     
     <div id="questionImageHolder">
-      <div id="dragAndDropLabel">Or, <br/> drag and drop an image</div>
+      <div id="dragAndDropLabel">Or, <br/> drag and drop an image<br/> <br/></div>
       <img id="showImage">
     </div>
   </div>
+  <div id="vertLine"></div>
   <div id="predictionArea">
+    <div id="predictionAreaHeader">Top Matches: </div>
     <div id="predictionTopBar">
       <div id="pred1" class="prediction"></div>
       <div id="pred2" class="prediction"></div>
@@ -39,8 +43,8 @@
       <div id="pred4" class="prediction"></div>
       <div id="pred5" class="prediction"></div>
     </div>
+    <p id="sampleImageHeader">Reference Samples:</p>
     <div id="sampleImageContainer">
-      <p id="sampleImageHeader">Reference Samples:</p>
       <div id="sampleImageRow1" class="sampleImageRow">
         <img class="fakeImage sampleImage1 fade-in-right"></img>
         <img class="fakeImage sampleImage2 fade-in-right"></img>
@@ -53,7 +57,7 @@
         <img class="fakeImage sampleImage7 fade-in-right"></img>
         <img class="fakeImage sampleImage8 fade-in-right"></img>
         <img class="fakeImage sampleImage9 fade-in-right"></img>
-        <img class="fakeImage sampleImage0 fade-in-right"></img>
+        <img class="fakeImage sampleImage10 fade-in-right"></img>
       </div>
     </div>
   </div>
