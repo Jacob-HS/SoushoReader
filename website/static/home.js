@@ -8,8 +8,8 @@ socket.on("answer", function(data){
   console.log("recieved");
   console.log(data);
   sampleImageData=data;
-  displayAnswers(Object.keys(data));
   preloadImages(sampleImageData);
+  displayAnswers(Object.keys(data));
   displaySampleImages(sampleImageData, 0);
 });
 
@@ -61,7 +61,7 @@ document.getElementById("dummyButton").addEventListener("click", () => {
 document.getElementById("submitCropButton").addEventListener("click", () => {
   let img = document.getElementById("showImage");
   let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
-  let resizedResult = cropper.getCroppedCanvas({fillColor: "white", maxWidth: 100, maxHeight: 100});
+  let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
   img.src = sameSizeResult.toDataURL('image/jpeg');
   resizedResult.toBlob(tempblob => {
     tempblob.arrayBuffer().then(arr => {
@@ -72,6 +72,9 @@ document.getElementById("submitCropButton").addEventListener("click", () => {
   });
   cropper.destroy();
   document.getElementById("cropPopupArea").classList.add("hidden");
+  displayQuestionImage();
+  displayMatchHeader();
+  removePredictionPlaceholder();
 });
 
 document.getElementById("pred1").addEventListener("click",()=>switchActiveAnswer(1));
@@ -98,11 +101,16 @@ function preloadImages(data){
 }
 
 function displaySampleImages(data, idx){
+  document.getElementById("masterReferenceContainer").style.animationPlayState="running";
+  document.getElementById("masterReferenceContainer").classList.remove("hidden");
   let keys = Object.keys(data);
   for (const [index, fileName] of data[keys[idx]].entries()){
     let uni='U+'+((keys[idx].charCodeAt(0)).toString(16)).toUpperCase();
     console.log('samples\\'+uni+'\\'+fileName);
-    document.getElementsByClassName("sampleImage"+(index+1))[0].src='static\\samples\\'+uni+'\\'+fileName;
+    let temp=document.getElementsByClassName("sampleImage"+(index+1))[0];
+    temp.style.animationPlayState="running";
+    temp.classList.remove("hidden");
+    temp.src='static\\samples\\'+uni+'\\'+fileName;
   }
   //for (const key of keys){
   //  
@@ -139,7 +147,13 @@ function cropImage(){
       
     });
   document.getElementById("file").value="";
-  displayQuestionImage();
+}
+
+function displayMatchHeader(){
+  document.getElementById("predictionAreaHeader").style.animationPlayState="running";
+  document.getElementById("horizontalBar").style.animationPlayState="running";
+  document.getElementById("predictionAreaHeader").classList.remove("hidden");
+  document.getElementById("horizontalBar").classList.remove("hidden");
 }
 
 function displayQuestionImage(){
@@ -147,10 +161,17 @@ function displayQuestionImage(){
   document.getElementById("showImage").style.display="block";
 }
 
+function removePredictionPlaceholder(){
+  document.getElementById("predictionAreaPlaceholder").classList.add("hidden");
+  document.getElementById("predictionArea").classList.remove("hidden");
+}
+
 function displayAnswers(answerList){
   let i =1;
   for (const answer of answerList){
     let temp=document.getElementById("pred"+i);
+    temp.style.animationPlayState="running";
+    temp.classList.remove("hidden");
     temp.innerHTML=answer;
     i++;
   }

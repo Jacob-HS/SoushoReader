@@ -6,16 +6,30 @@ body {
 .fade-in-right{-webkit-animation:fade-in-right .6s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in-right .6s cubic-bezier(.39,.575,.565,1.000) both}
 @-webkit-keyframes fade-in-right{0%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes fade-in-right{0%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
 
-.sampleImage1{animation-delay: 0ms;}
-.sampleImage2{animation-delay: 100ms;}
-.sampleImage3{animation-delay: 200ms;}
-.sampleImage4{animation-delay: 300ms;}
-.sampleImage5{animation-delay: 400ms;}
-.sampleImage6{animation-delay: 500ms;}
-.sampleImage7{animation-delay: 600ms;}
-.sampleImage8{animation-delay: 700ms;}
-.sampleImage9{animation-delay: 800ms;}
-.sampleImage10{animation-delay: 900ms;}
+.fade-in-right-bar{-webkit-animation:fade-in-right 1s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in-right .6s cubic-bezier(.39,.575,.565,1.000) both}
+@-webkit-keyframes fade-in-right-bar{0%{-webkit-transform:translateX(200px);transform:translateX(200px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes fade-in-right-bar{0%{-webkit-transform:translateX(200px);transform:translateX(200px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
+
+.fade-in-bottom{-webkit-animation:fade-in-bottom .6s cubic-bezier(.39,.575,.565,1.000) both;animation:fade-in-bottom .6s cubic-bezier(.39,.575,.565,1.000) both}
+@-webkit-keyframes fade-in-bottom{0%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes fade-in-bottom{0%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
+
+
+
+.sampleImage1{animation-delay: 1000ms;}
+.sampleImage2{animation-delay: 1100ms;}
+.sampleImage3{animation-delay: 1200ms;}
+.sampleImage4{animation-delay: 1300ms;}
+.sampleImage5{animation-delay: 1400ms;}
+.sampleImage6{animation-delay: 1000ms;}
+.sampleImage7{animation-delay: 1100ms;}
+.sampleImage8{animation-delay: 1200ms;}
+.sampleImage9{animation-delay: 1300ms;}
+.sampleImage10{animation-delay: 1400ms;}
+
+#pred1{animation-delay: 0s;}
+#pred2{animation-delay: .1s;}
+#pred3{animation-delay: .2s;}
+#pred4{animation-delay: .3s;}
+#pred5{animation-delay: .4s;}
 
 .titleContainer{
   color: white;
@@ -29,10 +43,15 @@ body {
   border-left: 1px solid white;
 }
 
+#masterReferenceContainer{
+  animation-delay: .5s;
+  animation-play-state: paused;
+}
+
 .fakeImage{
   background-color: rgb(0, 51, 255);
-  height: 16vh;
-  width: 16vh;
+  height: 16.5vh;
+  width: 16.5vh;
 }
 
 .sampleImageRow {
@@ -41,16 +60,17 @@ body {
   justify-content: space-evenly;
 }
 #sampleImageRow1{
-  padding: 5vh 0 2.5vh 0;
+  padding: 4vh 0 2vh 0;
 }
 
 #sampleImageRow2{
-  padding: 2.5vh 0 5vh 0;
+  padding: 2vh 0 4vh 0;
 }
 
 #dummyButton{
   color: white;
-  font-size: 2.5vw;
+  font-size: 2vw;
+  margin-top: 10vh;
   padding: 1.5vh 1.5vw;
   background-color: rgb(0, 119, 255);
   border: none;
@@ -60,7 +80,7 @@ body {
 
 #dummyButton:hover {
   background-color: rgb(1, 102, 218);
-  box-shadow: 0 0 2vw .1vw rgba(49, 145, 255, 0.54);
+  box-shadow: 0 0 1.5vw .1vh rgba(49, 145, 255, 0.54);
 }
 
 #imageAreaHeader{
@@ -72,33 +92,37 @@ body {
 
 #predictionAreaHeader{
   color: white;
-  margin: 0 0 5vh 0;
+  margin: -8vh 0 1vh 0;
   font-size: 3vw;
   margin-left: 3vw;
+  animation-play-state: paused;
 }
 
 .prediction{
-  font-size: 7vh;
+  font-size: 6vh;
   text-align: center;
   background-color: rgb(31, 31, 31);
-  width: 6vw;
+  width: 5vw;
   padding: 0 1vw;
   color: white;
-  box-shadow: 0 0 1vw .1vh rgb(0, 136, 255);
+  box-shadow: 0 0 1vw .1vh rgba(255, 255, 255, 0.525);
   border-radius: 4vh;
-  margin-bottom: 2vh;
   cursor:pointer;
 }
 
 .activePrediction{
+  outline: 2px solid rgb(255, 121, 31);
   text-shadow: 0 0 1vh rgb(255, 121, 31);
   box-shadow: 0 0 2vw .1vw rgb(255, 121, 31);
 }
 
 #sampleImageContainer{
-  border: .5vh double white;
+  border: .5vh double rgb(0, 85, 118);
   border-radius: 2vw;
   z-index: 2;
+  background-color: rgb(31, 31, 31);
+  animation-delay:.5s;
+  animation-play-state: paused;
 }
 #testImage{
   display: block;
@@ -112,6 +136,29 @@ body {
   margin-bottom: 0;
   color: white;
   font-size: 4vh;
+  animation-delay: .5s;
+  animation-play-state: paused;
+  position: relative;
+  z-index: 5;
+}
+
+#sampleImageHeaderText{
+  background-color: rgb(31, 31, 31);
+  padding: 1vh 2vh 0 2vh;
+  border-top-left-radius: 1vh;
+  border-top-right-radius: 1vh;
+  border: .5vh double rgb(0, 85, 118);
+  border-bottom: .7vh solid rgb(31, 31, 31);
+}
+
+#headerCover {
+  background-color: rgb(31, 31, 31);
+  position: absolute;
+  top: 6.5vh;
+  padding: 1vh 2vh 0 2vh;
+  color:transparent;
+  font-size: 2vh;
+  z-index: unset;
 }
 
 #cropPopupContainer {
@@ -187,6 +234,17 @@ body {
   margin-left: 5vw;
   margin-right: 5vw;
 }
+
+#predictionAreaPlaceholder{
+  justify-content: center;
+  text-align: center;
+  width: 49vw;
+  margin-left: 8vw;
+  margin-right: 8vw;
+  font-size: 5vw;
+  color: rgba(255, 255, 255, 0.386);
+}
+
 #applicationArea {
   display: flex;
   flex-direction: row;
@@ -196,10 +254,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5vh;
-  height: 25vw;
-  width:25vw;
-  border-radius: 2vw;
+  margin-top: 10vh;
+  height: 45vh;
+  width:45vh;
+  border-radius: 1vw;
   outline: .2vw solid rgb(193, 193, 193);
 }
 #predictionTopBar {
@@ -207,9 +265,18 @@ body {
   width: 90%;
   z-index: 1;
   margin: auto;
-  height:12.5vh;
-  margin-top: 5vh;
+  height:8.5vh;
+  margin-bottom: 8.5vh;
   justify-content: space-between;
+}
+#horizontalBar{
+  border-top: 1px solid white;
+  margin:auto;
+  margin-bottom: 8vh;
+  width:90%;
+  animation-delay: 500ms;
+  animation-play-state: paused;
+
 }
 #dragAndDropLabel{
   color: rgba(255, 255, 255, 0.198);

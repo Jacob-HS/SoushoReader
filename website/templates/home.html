@@ -34,32 +34,39 @@
     </div>
   </div>
   <div id="vertLine"></div>
-  <div id="predictionArea">
-    <div id="predictionAreaHeader">Top Matches: </div>
+  <div id="predictionAreaPlaceholder">Upload an image to see predictions</div>
+  <div id="predictionArea" class="hidden">
+    <div id="predictionAreaHeader" class="fade-in-bottom hidden">Top Matches: </div>
+    <div id="horizontalBar" class="fade-in-right-bar hidden"></div>
     <div id="predictionTopBar">
-      <div id="pred1" class="prediction"></div>
-      <div id="pred2" class="prediction"></div>
-      <div id="pred3" class="prediction"></div>
-      <div id="pred4" class="prediction"></div>
-      <div id="pred5" class="prediction"></div>
+      <div id="pred1" class="prediction fade-in-right hidden"></div>
+      <div id="pred2" class="prediction fade-in-right hidden"></div>
+      <div id="pred3" class="prediction fade-in-right hidden"></div>
+      <div id="pred4" class="prediction fade-in-right hidden"></div>
+      <div id="pred5" class="prediction fade-in-right hidden"></div>
     </div>
-    <p id="sampleImageHeader">Reference Samples:</p>
-    <div id="sampleImageContainer">
-      <div id="sampleImageRow1" class="sampleImageRow">
-        <img class="fakeImage sampleImage1 fade-in-right"></img>
-        <img class="fakeImage sampleImage2 fade-in-right"></img>
-        <img class="fakeImage sampleImage3 fade-in-right"></img>
-        <img class="fakeImage sampleImage4 fade-in-right"></img>
-        <img class="fakeImage sampleImage5 fade-in-right"></img>
+    <div id="masterReferenceContainer" class="fade-in-bottom hidden">
+      <div id="sampleImageHeader">
+        <span id="sampleImageHeaderText">Reference Samples: </span>
       </div>
-      <div id="sampleImageRow2" class="sampleImageRow">
-        <img class="fakeImage sampleImage6 fade-in-right"></img>
-        <img class="fakeImage sampleImage7 fade-in-right"></img>
-        <img class="fakeImage sampleImage8 fade-in-right"></img>
-        <img class="fakeImage sampleImage9 fade-in-right"></img>
-        <img class="fakeImage sampleImage10 fade-in-right"></img>
+      <div id="sampleImageContainer">
+        <div id="sampleImageRow1" class="sampleImageRow">
+          <img class="fakeImage sampleImage1 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage2 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage3 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage4 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage5 fade-in-right hidden"></img>
+        </div>
+        <div id="sampleImageRow2" class="sampleImageRow">
+          <img class="fakeImage sampleImage6 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage7 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage8 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage9 fade-in-right hidden"></img>
+          <img class="fakeImage sampleImage10 fade-in-right hidden "></img>
+        </div>
       </div>
     </div>
+    
   </div>
 </div>
 <div id="preloadContainer"></div>
