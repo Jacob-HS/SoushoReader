@@ -10,7 +10,7 @@ socket.on("answer", function(data){
   sampleImageData=data;
   preloadImages(sampleImageData);
   displayAnswers(Object.keys(data));
-  displaySampleImages(sampleImageData, 0);
+  switchActiveAnswer(1);
 });
 
 document.getElementById("file").addEventListener("change", function(event){
@@ -175,5 +175,4 @@ function displayAnswers(answerList){
     temp.innerHTML=answer;
     i++;
   }
-  document.getElementById("pred1").classList.add("activePrediction");
 }
