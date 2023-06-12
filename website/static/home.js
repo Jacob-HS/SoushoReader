@@ -4,6 +4,7 @@ var socket = io();
 let cropper;
 let sampleImageData;
 let preloadedImages = [];
+let cropCount=0;
 socket.on("answer", function(data){
   console.log("recieved");
   console.log(data);
@@ -11,6 +12,15 @@ socket.on("answer", function(data){
   preloadImages(sampleImageData);
   displayAnswers(Object.keys(data));
   switchActiveAnswer(1);
+});
+
+document.getElementById("addCropButton").addEventListener("click", ()=>{
+  let img = document.getElementById("finishedCrop"+(cropCount+1));
+  cropCount++;
+  let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
+  let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
+  img.src = sameSizeResult.toDataURL('image/jpeg');
+  cropper.clear();
 });
 
 document.getElementById("file").addEventListener("change", function(event){
@@ -73,8 +83,14 @@ document.getElementById("submitCropButton").addEventListener("click", () => {
   cropper.destroy();
   document.getElementById("cropPopupArea").classList.add("hidden");
   displayQuestionImage();
-  displayMatchHeader();
-  removePredictionPlaceholder();
+  let prediction1 = document.getElementById("pred1").innerHTML;
+  if (prediction1===""){
+    displayMatchHeader();
+    removePredictionPlaceholder();
+  }else{
+    prepareForSubsequentQuestion();
+  }
+  
 });
 
 document.getElementById("pred1").addEventListener("click",()=>switchActiveAnswer(1));
@@ -82,6 +98,15 @@ document.getElementById("pred2").addEventListener("click",()=>switchActiveAnswer
 document.getElementById("pred3").addEventListener("click",()=>switchActiveAnswer(3));
 document.getElementById("pred4").addEventListener("click",()=>switchActiveAnswer(4));
 document.getElementById("pred5").addEventListener("click",()=>switchActiveAnswer(5));
+
+function prepareForSubsequentQuestion(){
+  preds = document.getElementById("predictionTopBar").children;
+  for (pred of preds){
+    pred.classList.add("hidden");
+  }
+  document.getElementById("masterReferenceContainer").classList.add("hidden");
+  document.getElementById("pred1").classList.remove("activePrediction");
+}
 
 function preloadImages(data){
   preloadedImages = []
@@ -134,13 +159,11 @@ function cropImage(){
   img=document.getElementById("testImage");
   let image = document.getElementById("testImage");
     cropper = new Cropper(image, {
-        autoCrop: true,
-        autoCropArea: .8,
+        autoCrop: false,
         viewMode: 2,
         movable: false,
         minContainerWidth: 0,
         highlight: false,
-        zoomable: false,
         ready(){
           cropper.setCanvasData({ height: img.clientHeight, width: img.clientWidth  });
         }
