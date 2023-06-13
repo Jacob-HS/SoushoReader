@@ -5,13 +5,19 @@ let cropper;
 let sampleImageData;
 let preloadedImages = [];
 let cropCount=0;
+let totalQuestions;
+let currQuestion;
+let resizedImages = {};
+let originalImages = {};
 socket.on("answer", function(data){
   console.log("recieved");
   console.log(data);
   sampleImageData=data;
+  totalQuestions=(Object.keys(data)).length;
+  currQuestion=1;
   preloadImages(sampleImageData);
-  displayAnswers(Object.keys(data));
-  switchActiveAnswer(1);
+  displayAnswers(Object.keys(data["1"]));
+  switchActiveAnswer(1,1);
 });
 
 document.getElementById("addCropButton").addEventListener("click", ()=>{
@@ -19,8 +25,17 @@ document.getElementById("addCropButton").addEventListener("click", ()=>{
   cropCount++;
   let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
   let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
-  img.src = sameSizeResult.toDataURL('image/jpeg');
+  let imgURL=sameSizeResult.toDataURL('image/jpeg');
+  img.src = imgURL;
+  originalImages[String(cropCount)]=imgURL;
+  resizedResult.toBlob(tempblob => {
+    tempblob.arrayBuffer().then(arr => {
+      var final = new Uint8Array(arr);
+      const imagearray = [...final];
+      resizedImages[String(cropCount)]=imagearray;
+    });
   cropper.clear();
+  });
 });
 
 document.getElementById("file").addEventListener("change", function(event){
@@ -69,18 +84,20 @@ document.getElementById("dummyButton").addEventListener("click", () => {
 });
 
 document.getElementById("submitCropButton").addEventListener("click", () => {
-  let img = document.getElementById("showImage");
   let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
   let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
-  img.src = sameSizeResult.toDataURL('image/jpeg');
   resizedResult.toBlob(tempblob => {
     tempblob.arrayBuffer().then(arr => {
       var final = new Uint8Array(arr);
       const test = [...final];
-      socket.emit("askQuestion", {"data": test});
     });
+  let img = document.getElementById("showImage");
+  img.src = originalImages["1"];
+    
   });
-  cropper.destroy();
+  resetCropper();
+  console.log(resizedImages);
+  socket.emit("askQuestion", resizedImages);
   document.getElementById("cropPopupArea").classList.add("hidden");
   displayQuestionImage();
   let prediction1 = document.getElementById("pred1").innerHTML;
@@ -93,11 +110,35 @@ document.getElementById("submitCropButton").addEventListener("click", () => {
   
 });
 
-document.getElementById("pred1").addEventListener("click",()=>switchActiveAnswer(1));
-document.getElementById("pred2").addEventListener("click",()=>switchActiveAnswer(2));
-document.getElementById("pred3").addEventListener("click",()=>switchActiveAnswer(3));
-document.getElementById("pred4").addEventListener("click",()=>switchActiveAnswer(4));
-document.getElementById("pred5").addEventListener("click",()=>switchActiveAnswer(5));
+document.getElementById("pred1").addEventListener("click",()=>switchActiveAnswer(currQuestion, 1));
+document.getElementById("pred2").addEventListener("click",()=>switchActiveAnswer(currQuestion, 2));
+document.getElementById("pred3").addEventListener("click",()=>switchActiveAnswer(currQuestion, 3));
+document.getElementById("pred4").addEventListener("click",()=>switchActiveAnswer(currQuestion, 4));
+document.getElementById("pred5").addEventListener("click",()=>switchActiveAnswer(currQuestion, 5));
+
+document.getElementById("questionImageButton1").addEventListener("click", ()=>switchActiveQuestion(1));
+document.getElementById("questionImageButton2").addEventListener("click", ()=>switchActiveQuestion(2));
+document.getElementById("questionImageButton3").addEventListener("click", ()=>switchActiveQuestion(3));
+document.getElementById("questionImageButton4").addEventListener("click", ()=>switchActiveQuestion(4));
+
+function resetCropper(){
+  cropper.destroy();
+  cropCount=0;
+  cropContainers = document.getElementsByClassName("finishedCrop");
+  for (const crop of cropContainers){
+    crop.src="";
+  }
+}
+
+function switchActiveQuestion(num){
+  if (document.getElementById("questionImageButton"+num).classList.contains("activeQuestion")) return;
+  document.getElementsByClassName("activeQuestion")[0].classList.remove("activeQuestion");
+  document.getElementById("questionImageButton"+num).classList.add("activeQuestion");
+  document.getElementById("showImage").src=originalImages[String(num)];
+  displayAnswers(Object.keys(sampleImageData[String(num)]));
+  currQuestion=num;
+  displaySampleImages(sampleImageData[String(currQuestion)], 0)
+}
 
 function prepareForSubsequentQuestion(){
   preds = document.getElementById("predictionTopBar").children;
@@ -110,18 +151,23 @@ function prepareForSubsequentQuestion(){
 
 function preloadImages(data){
   preloadedImages = []
-  let keys = Object.keys(data);
+  let keys;
   document.getElementById("preloadContainer").innerHTML="";
-  for (let i=0;i<5;i++){;
-    console.log(i);
-    for (const [index, fileName] of data[keys[i]].entries()){
-      let uni='U+'+((keys[i].charCodeAt(0)).toString(16)).toUpperCase();
-      var x = document.createElement("IMG");
-      x.src='static\\samples\\'+uni+'\\'+fileName;
-
-      document.getElementById("preloadContainer").appendChild(x);
+  for (let questionNum = 1; questionNum <= totalQuestions; questionNum++){
+    keys = Object.keys(data[String(questionNum)]);
+    console.log(keys);
+    for (let i=0;i<5;i++){;
+      console.log(i);
+      for (const [index, fileName] of data[String(questionNum)][keys[i]].entries()){
+        let uni='U+'+((keys[i].charCodeAt(0)).toString(16)).toUpperCase();
+        var x = document.createElement("IMG");
+        x.src='static\\samples\\'+uni+'\\'+fileName;
+  
+        document.getElementById("preloadContainer").appendChild(x);
+      }
     }
   }
+  
   
 }
 
@@ -142,7 +188,7 @@ function displaySampleImages(data, idx){
   //}
 }
 
-function switchActiveAnswer (num){
+function switchActiveAnswer (question, num){
   if (document.getElementById("pred"+num).innerHTML === "") return
   if (document.getElementById("pred"+num).classList.contains("activePrediction")) return
 
@@ -150,7 +196,7 @@ function switchActiveAnswer (num){
     document.getElementById("pred"+i).classList.remove("activePrediction");
   }
   document.getElementById("pred"+num).classList.add("activePrediction");
-  displaySampleImages(sampleImageData, num-1);
+  displaySampleImages(sampleImageData[String(currQuestion)], num-1);
 }
 
 function cropImage(){
@@ -190,7 +236,7 @@ function removePredictionPlaceholder(){
 }
 
 function displayAnswers(answerList){
-  let i =1;
+  let i=1;
   for (const answer of answerList){
     let temp=document.getElementById("pred"+i);
     temp.style.animationPlayState="running";

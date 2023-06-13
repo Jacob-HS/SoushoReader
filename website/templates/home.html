@@ -9,10 +9,11 @@
 <div id="cropPopupArea" class="hidden">
   <div id="cropPopupContainer">
     <div id="finishedCropsContainer">
-      <img id="finishedCrop1" class="finishedCrop">
-      <img id="finishedCrop2" class="finishedCrop">
-      <img id="finishedCrop3" class="finishedCrop">
-      <img id="finishedCrop4" class="finishedCrop">
+      <div class="ifcc"><img id="finishedCrop1" class="finishedCrop"></div>
+      <div class="ifcc"><img id="finishedCrop2" class="finishedCrop"></div>
+      <div class="ifcc"><img id="finishedCrop3" class="finishedCrop"></div>
+      <div class="ifcc"><img id="finishedCrop4" class="finishedCrop"></div>
+
     </div>
     <p id="cropPopupHeader">Crop Image</p>
     <div id="cropImageContainer">
@@ -34,11 +35,19 @@
       <button id="dummyButton">Upload File</button>
       <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
     </div>
-    
-    <div id="questionImageHolder">
-      <div id="dragAndDropLabel">Or, <br/> drag and drop an image<br/> <br/></div>
-      <img id="showImage">
+    <div id="questionContainer">
+      <div id="questionImageSelectionBar">
+        <div id="questionImageButton1" class="questionImageButton activeQuestion">1</div>
+        <div id="questionImageButton2" class="questionImageButton">2</div>
+        <div id="questionImageButton3" class="questionImageButton">3</div>
+        <div id="questionImageButton4" class="questionImageButton">4</div>
+      </div>
+      <div id="questionImageHolder">
+        <div id="dragAndDropLabel">Or, <br/> drag and drop an image<br/> <br/></div>
+        <img id="showImage">
+      </div>
     </div>
+    
   </div>
   <div id="vertLine"></div>
   <div id="predictionAreaPlaceholder">Upload an image to see predictions</div>
