@@ -178,8 +178,9 @@ body {
 .ifcc{
   width: 7vw;
   height: 7vw;
+  position: relative;
   border: 1px solid white;
-  margin-bottom: 1vh;
+  margin-bottom: 3vh;
 }
 
 .finishedCrop{
@@ -194,19 +195,19 @@ body {
 
 .questionImageButton{
   color:white;
-  width: 5vw;
+  width: 10vh;
   height:5vh;
   margin:0;
   font-size: 4vh;
   border-top-left-radius: 2vh;
   border-top-right-radius: 2vh;
-  background-color: #999;
+  background-color: #5c5c5c;
   display:inline-block;
   cursor:pointer;
 }
 
 .activeQuestion{
-  background-color: #5c5c5c;
+  background-color: #999;
 }
 
 #cropPopupContainer {
@@ -224,6 +225,16 @@ body {
   margin: 0 3vw 0 3vw;
 }
 
+.cropDeleteButton{
+  width: 4vh;
+  height: 4vh;
+  position: absolute;
+  color: white;
+  background-color: #999;
+  right: -2vh;
+  top: -2vh;
+  border-radius: 1vw;
+}
 #cropPopupHeader{
   font-size: 2vw;
   color:white; 
@@ -326,8 +337,10 @@ body {
 }
 #questionImageSelectionBar{
   position: absolute;
-  top:-5vh;
+  display: flex;
+  top: -5vh;
   width: 45vh;
+  justify-content: center;
   margin: auto;
   text-align: center;
 }

@@ -84,17 +84,9 @@ document.getElementById("dummyButton").addEventListener("click", () => {
 });
 
 document.getElementById("submitCropButton").addEventListener("click", () => {
-  let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
-  let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
-  resizedResult.toBlob(tempblob => {
-    tempblob.arrayBuffer().then(arr => {
-      var final = new Uint8Array(arr);
-      const test = [...final];
-    });
+  cropCount=0;
   let img = document.getElementById("showImage");
   img.src = originalImages["1"];
-    
-  });
   resetCropper();
   console.log(resizedImages);
   socket.emit("askQuestion", resizedImages);
@@ -121,15 +113,30 @@ document.getElementById("questionImageButton2").addEventListener("click", ()=>sw
 document.getElementById("questionImageButton3").addEventListener("click", ()=>switchActiveQuestion(3));
 document.getElementById("questionImageButton4").addEventListener("click", ()=>switchActiveQuestion(4));
 
+document.getElementById("cropDeleteButton1").addEventListener("click",()=>deleteCrop(1));
+document.getElementById("cropDeleteButton2").addEventListener("click",()=>deleteCrop(2));
+document.getElementById("cropDeleteButton3").addEventListener("click",()=>deleteCrop(3));
+document.getElementById("cropDeleteButton4").addEventListener("click",()=>deleteCrop(4));
+
 function resetCropper(){
   cropper.destroy();
-  cropCount=0;
   cropContainers = document.getElementsByClassName("finishedCrop");
   for (const crop of cropContainers){
     crop.src="";
   }
 }
 
+function deleteCrop(num) {
+  for(let i = num; i<cropCount;i++){
+    originalImages[String(i)]=originalImages[String(i+1)];
+    resizedImages[String(i)]=resizedImages[String(i+1)];
+    document.getElementById("finishedCrop"+i).src=document.getElementById("finishedCrop"+(i+1)).src;
+  }
+  document.getElementById("finishedCrop"+cropCount).src="";
+  delete originalImages[String(cropCount)];
+  delete resizedImages[String(cropCount)];
+  cropCount--;
+}
 function switchActiveQuestion(num){
   if (document.getElementById("questionImageButton"+num).classList.contains("activeQuestion")) return;
   document.getElementsByClassName("activeQuestion")[0].classList.remove("activeQuestion");
@@ -200,7 +207,8 @@ function switchActiveAnswer (question, num){
 }
 
 function cropImage(){
-  console.log("fuck");
+  resizedImages={}
+  sameSizeResult={}
   document.getElementById("cropPopupArea").classList.remove("hidden");
   img=document.getElementById("testImage");
   let image = document.getElementById("testImage");
@@ -228,6 +236,11 @@ function displayMatchHeader(){
 function displayQuestionImage(){
   document.getElementById("dragAndDropLabel").style.display="none";
   document.getElementById("showImage").style.display="block";
+  IMG_COUNT = Object.keys(resizedImages).length;
+  for(let i=1;i<=IMG_COUNT;i++){
+    document.getElementById("questionImageButton"+i).classList.remove("hidden", "activeQuestion");
+  }
+  document.getElementById("questionImageButton1").classList.add("activeQuestion");
 }
 
 function removePredictionPlaceholder(){
