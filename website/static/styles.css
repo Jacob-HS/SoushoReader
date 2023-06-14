@@ -189,6 +189,11 @@ body {
   height: 100%;
 }
 
+.inactiveDone{
+  background-color: #999 !important;
+  pointer-events: none;
+}
+
 .finishedCrop[src=""]{
   display:none;
 }
@@ -228,12 +233,14 @@ body {
 .cropDeleteButton{
   width: 4vh;
   height: 4vh;
+  font-size: 3vh;
   position: absolute;
   color: white;
   background-color: #999;
   right: -2vh;
   top: -2vh;
   border-radius: 1vw;
+  cursor: pointer;
 }
 #cropPopupHeader{
   font-size: 2vw;
@@ -260,8 +267,7 @@ body {
   font-size: 1.5vw;
   padding: .5vw;
   border: none;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin: 2vh 1vh 2vh 0;
   cursor: pointer;
 }
 

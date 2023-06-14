@@ -21,8 +21,10 @@ socket.on("answer", function(data){
 });
 
 document.getElementById("addCropButton").addEventListener("click", ()=>{
-  let img = document.getElementById("finishedCrop"+(cropCount+1));
+  document.getElementById("submitCropButton").classList.remove("inactiveDone");
   cropCount++;
+  let img = document.getElementById("finishedCrop"+(cropCount));
+  document.getElementById("cropDeleteButton"+cropCount).classList.remove("hidden");
   let sameSizeResult = cropper.getCroppedCanvas({fillColor: "white"});
   let resizedResult = cropper.getCroppedCanvas({fillColor: "white", width: 100, height: 100});
   let imgURL=sameSizeResult.toDataURL('image/jpeg');
@@ -133,9 +135,13 @@ function deleteCrop(num) {
     document.getElementById("finishedCrop"+i).src=document.getElementById("finishedCrop"+(i+1)).src;
   }
   document.getElementById("finishedCrop"+cropCount).src="";
+  document.getElementById("cropDeleteButton"+cropCount).classList.add("hidden");
   delete originalImages[String(cropCount)];
   delete resizedImages[String(cropCount)];
   cropCount--;
+  if (cropCount == 0){
+    document.getElementById("submitCropButton").classList.add("inactiveDone");
+  }
 }
 function switchActiveQuestion(num){
   if (document.getElementById("questionImageButton"+num).classList.contains("activeQuestion")) return;
@@ -207,8 +213,9 @@ function switchActiveAnswer (question, num){
 }
 
 function cropImage(){
-  resizedImages={}
-  sameSizeResult={}
+  if (!(document.getElementById("pred1").innerHTML === "")){
+    resetApp();
+  }
   document.getElementById("cropPopupArea").classList.remove("hidden");
   img=document.getElementById("testImage");
   let image = document.getElementById("testImage");
@@ -257,4 +264,18 @@ function displayAnswers(answerList){
     temp.innerHTML=answer;
     i++;
   }
+}
+
+function resetApp(){
+  resizedImages={};
+  originalImages={};
+  let questionImageButtons = document.getElementsByClassName("questionImageButton");
+  for (const element of questionImageButtons){
+    element.classList.add("hidden");
+  }
+  let deleteButtons = document.getElementsByClassName("cropDeleteButton");
+  for (const element of deleteButtons){
+    element.classList.add("hidden");
+  }
+  document.getElementById("submitCropButton").classList.add("inactiveDone");
 }
