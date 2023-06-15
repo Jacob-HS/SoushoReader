@@ -75,9 +75,9 @@ def assessCustomImage(image, numOfResponses=1):
 
 @socketio.event
 def askQuestion (data):
+    print("fuck yeet")
     global model
     answerList={}
-    print(data)
     for idx in range(len(data)):
       im = cv2.imdecode(np.array(data[str(idx+1)], dtype=np.uint8), cv2.IMREAD_UNCHANGED)
       result=assessCustomImage(im, 5)

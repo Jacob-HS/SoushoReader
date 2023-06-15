@@ -121,6 +121,7 @@ body {
   color: white;
   box-shadow: 0 0 1vw .1vh rgba(255, 255, 255, 0.525);
   border-radius: 4vh;
+  position: relative;
   cursor:pointer;
 }
 
@@ -258,6 +259,20 @@ body {
   margin-top: 2vh;
   margin-bottom: 2vh;
   cursor: pointer;
+}
+
+.tooltipAlert{
+  position: absolute;
+  background-color: #0091ff;
+  height: 4vh;
+  color: rgb(255, 255, 255);
+  width: 4vh;
+  font-size: 3.5vh;
+  top:-1vh;
+  right: -1vh;
+  
+  border-radius: 5vh;
+  z-index: 100;
 }
 
 #addCropButton{

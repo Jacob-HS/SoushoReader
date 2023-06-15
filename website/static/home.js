@@ -159,7 +159,7 @@ function prepareForSubsequentQuestion(){
     pred.classList.add("hidden");
   }
   document.getElementById("masterReferenceContainer").classList.add("hidden");
-  document.getElementById("pred1").classList.remove("activePrediction");
+  document.getElementById("predContainer1").classList.remove("activePrediction");
 }
 
 function preloadImages(data){
@@ -203,12 +203,12 @@ function displaySampleImages(data, idx){
 
 function switchActiveAnswer (question, num){
   if (document.getElementById("pred"+num).innerHTML === "") return
-  if (document.getElementById("pred"+num).classList.contains("activePrediction")) return
+  if (document.getElementById("predContainer"+num).classList.contains("activePrediction")) return
 
   for(let i=1; i<=5; i++){
-    document.getElementById("pred"+i).classList.remove("activePrediction");
+    document.getElementById("predContainer"+i).classList.remove("activePrediction");
   }
-  document.getElementById("pred"+num).classList.add("activePrediction");
+  document.getElementById("predContainer"+num).classList.add("activePrediction");
   displaySampleImages(sampleImageData[String(currQuestion)], num-1);
 }
 
@@ -259,10 +259,13 @@ function displayAnswers(answerList){
   let i=1;
   for (const answer of answerList){
     let temp=document.getElementById("pred"+i);
-    temp.style.animationPlayState="running";
-    temp.classList.remove("hidden");
     temp.innerHTML=answer;
     i++;
+  }
+  let predcontainers = document.getElementsByClassName("prediction");
+  for(const element of predcontainers){
+    element.style.animationPlayState="running";
+    element.classList.remove("hidden");
   }
 }
 
