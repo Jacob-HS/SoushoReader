@@ -7,34 +7,54 @@
   <p class="titleBlock">Sousho Reader AI</p>
 </div>
 <div id="cropPopupArea" class="hidden">
-  <div id="cropPopupContainer">
+  <div id="exampleArea">
+    <div id="goodBadContainer">
+      <div id="goodExample" class="exampleContainer">
+        <p id="goodExampleHeader" class="exampleHeader">Good:</p>
+        <img src="{{url_for('static',filename='goodExample.png')}}" id="goodExampleImage" class="exampleImage">
+      </div>
+      <div id="badExample" class="exampleContainer">
+        <p id="badExampleHeader" class="exampleHeader">Bad:</p>
+        <img src="{{url_for('static',filename='badExample.png')}}" id="badExampleImage" class="exampleImage">
+      </div>
+    </div>
+  </div>
+  <div>
+    <p id="cropPopupHeader">Crop Image:</p>
+    <div id="cropPopupContainer">
+      <div id="cropImageContainer">
+        <img id="testImage">
+      </div>
+      <br/>
+      <button id="addCropButton">Add selection</button>
+      <button id="submitCropButton" class="inactiveDone">Done</button>
+    </div>
+  </div>
+  
+  <div id="finishedCropArea">
+    <p id="finishedCropAreaHeader">Add up to 4 kanji: </p>
     <div id="finishedCropsContainer">
       <div class="ifcc">
         <div id="cropDeleteButton1" class="cropDeleteButton hidden">x</div>
+        <p class="ifccLabel">1</p>
         <img id="finishedCrop1" class="finishedCrop">
       </div>
       <div class="ifcc">
         <div id="cropDeleteButton2" class="cropDeleteButton hidden">x</div>
+        <p class="ifccLabel">2</p>
         <img id="finishedCrop2" class="finishedCrop">
       </div>
       <div class="ifcc">
         <div id="cropDeleteButton3" class="cropDeleteButton hidden">x</div>
+        <p class="ifccLabel">3</p>
         <img id="finishedCrop3" class="finishedCrop">
       </div>
       <div class="ifcc">
         <div id="cropDeleteButton4" class="cropDeleteButton hidden">x</div>
+        <p class="ifccLabel">4</p>
         <img id="finishedCrop4" class="finishedCrop">
       </div>
-
     </div>
-    <p id="cropPopupHeader">Crop Image</p>
-    <div id="cropImageContainer">
-      <img id="testImage">
-    </div>
-    <br/>
-    <button id="addCropButton">Add selection</button>
-    <button id="submitCropButton" class="inactiveDone">Done</button>
-    
   </div>
 </div>
 

@@ -74,8 +74,17 @@ body {
 }
 
 #finishedCropsContainer{
-  position: absolute;
-  left: 23vw;
+  width: 95%;
+  height: 8vw;
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #515151;
+  border-radius: 1vw;
+  
 }
 
 #sampleImageRow2{
@@ -183,13 +192,14 @@ body {
   height: 7vw;
   position: relative;
   border: .1vh solid white;
-  margin-bottom: 3vh;
 }
 
 .finishedCrop{
   object-fit: fill;
   width: 100%;
   height: 100%;
+  position:relative;
+  z-index: 3;
 }
 
 .inactiveDone{
@@ -222,15 +232,17 @@ body {
   background-color: rgb(72, 120, 120);
   position: relative;
   border-radius: 1vw;
-  width: 25vw;
-  box-shadow: 0px 0px 1px 100vw rgba(0, 0, 0, 0.641);
+  margin-bottom: 10vh;
+  max-height: 70vh;
+  max-width: 25vw;
+  box-shadow: 0px 0px 1px 100vw rgba(0, 0, 0, 0.895);
 }
 
 #cropImageContainer{
   display: inline-block;
-  width: 30vw;
-  height: 50vh;
-  margin: 0 3vw 0 3vw;
+  max-width: 22vw;
+  max-height: 40vh;
+  margin: 2vw 2vw 0 2vw;
 }
 
 .cropDeleteButton{
@@ -242,13 +254,17 @@ body {
   background-color: #999;
   right: -2vh;
   top: -2vh;
+  z-index: 4;
   border-radius: 1vw;
   cursor: pointer;
 }
 #cropPopupHeader{
-  font-size: 2vw;
-  color:white; 
+  font-size: 3vw;
+  color: white;
+  margin: 0 0 2vh 0;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 #submitCropButton{
@@ -258,8 +274,7 @@ body {
   font-size: 1.5vw;
   padding: .5vw;
   border: none;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin: 2vh 1vw 2vh 0;
   cursor: pointer;
 }
 
@@ -303,14 +318,14 @@ body {
   font-size: 1.5vw;
   padding: .5vw;
   border: none;
-  margin: 2vh 1vh 2vh 0;
+  margin: 2vh 1vh 2vh 1vw;
   cursor: pointer;
 }
 
 #cropPopupArea{
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
   align-items: center;
   width: 100vw;
@@ -318,6 +333,79 @@ body {
   top:0;
   left:0;
   z-index: 999;
+}
+
+#exampleArea{
+  width:35vw;
+  height:100vh;
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exampleHeader{
+  color: white;
+  font-size: 5vh;
+  text-align: center;
+}
+
+.exampleContainer{
+  width: 10vw;
+}
+
+#goodBadContainer{
+  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10vh;
+}
+
+#goodExampleImage{
+  box-shadow: 0 0 1vw 0.3vw green;
+}
+
+#badExampleImage{
+  box-shadow: 0 0 1vw 0.3vw rgb(242, 17, 17);
+}
+
+.exampleImage{
+  width:10vw;
+  height:10vw;
+  object-fit: fill;
+  border-radius: 1vh;
+}
+
+#finishedCropArea{
+  width:35vw;
+  position: relative;
+  z-index: 1000;
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#finishedCropAreaHeader{
+  color: white;
+  font-size: 5vh;
+  margin: 0 0 2vh 2vw;
+  text-align: left;
+}
+
+.ifccLabel {
+  position: absolute;
+  top:0;
+  left:0;
+  color:rgba(249, 250, 250, 0.393);
+  margin:0;
+  width: 100%;
+  height:100%;
+  text-align: center;
+  font-size:6vw;
+
 }
 
 #preloadContainer {
