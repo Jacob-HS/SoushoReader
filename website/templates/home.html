@@ -8,14 +8,17 @@
 </div>
 <div id="cropPopupArea" class="hidden">
   <div id="exampleArea">
+    <p id="exampleHeader">Examples:</p>
     <div id="goodBadContainer">
       <div id="goodExample" class="exampleContainer">
-        <p id="goodExampleHeader" class="exampleHeader">Good:</p>
-        <img src="{{url_for('static',filename='goodExample.png')}}" id="goodExampleImage" class="exampleImage">
+        <p id="goodExampleHeader" class="exampleHeader">Good</p>
+        <img src="{{url_for('static',filename='goodExample.png')}}" class="exampleImage goodExampleImage">
+        <img src="{{url_for('static',filename='goodExample2.png')}}" class="exampleImage goodExampleImage">
       </div>
       <div id="badExample" class="exampleContainer">
-        <p id="badExampleHeader" class="exampleHeader">Bad:</p>
-        <img src="{{url_for('static',filename='badExample.png')}}" id="badExampleImage" class="exampleImage">
+        <p id="badExampleHeader" class="exampleHeader">Bad</p>
+        <img src="{{url_for('static',filename='badExample.png')}}" class="exampleImage badExampleImage">
+        <img src="{{url_for('static',filename='badExample2.png')}}" class="exampleImage badExampleImage">
       </div>
     </div>
   </div>

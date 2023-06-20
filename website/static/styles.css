@@ -43,6 +43,8 @@ body {
 #vertLine{
   border-left: .1vh solid white;
   margin-top: 4vw;
+  position: relative;
+  z-index: 9999;
 }
 
 #masterReferenceContainer{
@@ -192,6 +194,7 @@ body {
   height: 7vw;
   position: relative;
   border: .1vh solid white;
+  border-radius: 2vh;
 }
 
 .finishedCrop{
@@ -229,20 +232,20 @@ body {
 }
 
 #cropPopupContainer {
-  background-color: rgb(72, 120, 120);
+  background-color: rgb(180, 180, 180);
   position: relative;
   border-radius: 1vw;
   margin-bottom: 10vh;
   max-height: 70vh;
-  max-width: 25vw;
+  width: 25vw;
   box-shadow: 0px 0px 1px 100vw rgba(0, 0, 0, 0.895);
 }
 
 #cropImageContainer{
   display: inline-block;
-  max-width: 22vw;
+  width: 22vw;
   max-height: 40vh;
-  margin: 2vw 2vw 0 2vw;
+  margin: 1.5vw 1.5vw 0 1.5vw;
 }
 
 .cropDeleteButton{
@@ -341,8 +344,17 @@ body {
   position: relative;
   z-index: 1000;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#exampleHeader{
+  font-size: 3vw;
+    color: white;
+    text-align: center;
+    margin: 2vh 0 4vh 0;
+    border-bottom: 1px solid white;
 }
 
 .exampleHeader{
@@ -360,20 +372,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
 }
 
-#goodExampleImage{
+.goodExampleImage{
   box-shadow: 0 0 1vw 0.3vw green;
 }
 
-#badExampleImage{
+.badExampleImage{
   box-shadow: 0 0 1vw 0.3vw rgb(242, 17, 17);
 }
 
 .exampleImage{
   width:10vw;
   height:10vw;
+  margin-bottom: 5vh;
   object-fit: fill;
   border-radius: 1vh;
 }
