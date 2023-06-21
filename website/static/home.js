@@ -130,6 +130,11 @@ document.getElementById("cropDeleteButton2").addEventListener("click",()=>delete
 document.getElementById("cropDeleteButton3").addEventListener("click",()=>deleteCrop(3));
 document.getElementById("cropDeleteButton4").addEventListener("click",()=>deleteCrop(4));
 
+document.getElementById("demoButton").addEventListener("click", ()=>{
+  document.getElementById("testImage").src='static\\demoImage.png';
+  cropImage();
+});
+
 function resetCropper(){
   cropper.destroy();
   cropContainers = document.getElementsByClassName("finishedCrop");
@@ -157,6 +162,8 @@ function switchActiveQuestion(num){
   if (document.getElementById("questionImageButton"+num).classList.contains("activeQuestion")) return;
   document.getElementsByClassName("activeQuestion")[0].classList.remove("activeQuestion");
   document.getElementById("questionImageButton"+num).classList.add("activeQuestion");
+  document.getElementsByClassName("activePrediction")[0].classList.remove("activePrediction");
+  document.getElementById("predContainer1").classList.add("activePrediction");
   document.getElementById("showImage").src=originalImages[String(num)];
   displayAnswers(Object.keys(sampleImageData[String(num)]));
   currQuestion=num;
@@ -259,9 +266,10 @@ function displayQuestionImage(){
     return;
   }
   for(let i=1;i<=IMG_COUNT;i++){
-    document.getElementById("questionImageButton"+i).classList.remove("hidden", "activeQuestion");
+    document.getElementById("questionImageButton"+i).classList.remove("hidden");
   }
   document.getElementById("questionImageButton1").classList.add("activeQuestion");
+  document.getElementById("questionImageButton"+IMG_COUNT).classList.add("finalQuestion");
 }
 
 function removePredictionPlaceholder(){
@@ -321,6 +329,8 @@ function resetApp(){
   let questionImageButtons = document.getElementsByClassName("questionImageButton");
   for (const element of questionImageButtons){
     element.classList.add("hidden");
+    element.classList.remove("activeQuestion");
+    element.classList.remove("finalQuestion");
   }
   let deleteButtons = document.getElementsByClassName("cropDeleteButton");
   for (const element of deleteButtons){
