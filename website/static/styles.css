@@ -34,6 +34,14 @@ body {
 
 .titleContainer{
   color: white;
+  height:8vh;
+}
+
+#logoImage{
+  height: 10vh;
+  position: absolute;
+  left: 1vw;
+  top: 1vw;
 }
 .titleBlock {
   margin: 2vh;
