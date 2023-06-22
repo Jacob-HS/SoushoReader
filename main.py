@@ -54,7 +54,7 @@ class model1(nn.Module):
   def forward(self, x: torch.Tensor):
     return self.classifier(self.block_2(self.block_1(x)))
 model=model1(output_shape=len(classList)).to(device)
-model.load_state_dict(torch.load("website\\static\\test.pth", map_location=device))
+model.load_state_dict(torch.load("test.pth", map_location=device))
 def assessCustomImage(image, numOfResponses=1):
   global model
   image1 = image
