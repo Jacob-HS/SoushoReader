@@ -123,10 +123,8 @@ stack-data==0.6.2
 sympy==1.11.1
 terminado==0.17.1
 tinycss2==1.2.1
-torch==2.0.0
-torchaudio==2.0.1
-torchinfo==1.7.2
-torchvision==0.15.1
+torch==2.0.0+cpu
+torchvision==0.15.1+cpu
 tornado==6.2
 tqdm==4.65.0
 traitlets==5.9.0
