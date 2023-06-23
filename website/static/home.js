@@ -318,11 +318,11 @@ function addTooltip (index, kanji){
 }
 
 function removeTooltips(){
-  let tooltipelements = (document.getElementsByClassName("tooltipAlert"));
+  let tooltipelements = (document.querySelectorAll(".tooltipAlert"));
   for (const element of tooltipelements){
     element.remove();
   }
-  tooltipelements = document.getElementsByClassName("tooltipText");
+  tooltipelements = document.querySelectorAll(".tooltipText");
   for (const element of tooltipelements){
     element.remove();
   }
