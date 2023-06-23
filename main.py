@@ -77,7 +77,7 @@ def assessCustomImage(image, numOfResponses=1):
 def askQuestion (data):
     print("fuck yeet")
     print(os.listdir('.'))
-    print(os.listdir('website'))
+    print(os.listdir('website\\static'))
     #global model
     #answerList={}
     #for idx in range(len(data)):
