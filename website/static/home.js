@@ -233,22 +233,20 @@ function cropImage(){
   if (!(document.getElementById("pred1").innerHTML === "")){
     resetApp();
   }
-  document.getElementById("cropPopupArea").classList.remove("hidden");
   img=document.getElementById("testImage");
   let image = document.getElementById("testImage");
-    cropper = new Cropper(image, {
-        autoCrop: false,
-        viewMode: 2,
-        movable: false,
-        minContainerWidth: 0,
-        minContainerHeight: 200,
-        highlight: false,
-        ready(){
-          cropper.setCanvasData({ height: img.clientHeight, width: img.clientWidth  });
-        }
-      
-    });
   document.getElementById("file").value="";
+  cropper = new Cropper(image, {
+      autoCrop: false,
+      viewMode: 2,
+      movable: false,
+      minContainerWidth: 0,
+      minContainerHeight: 200,
+      highlight: false,
+      ready(){
+      }
+  });
+  document.getElementById("cropPopupArea").classList.remove("hidden");
 }
 
 function displayMatchHeader(){
