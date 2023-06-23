@@ -75,25 +75,17 @@ def assessCustomImage(image, numOfResponses=1):
 
 @socketio.event
 def askQuestion (data):
-    print("fuck yeet")
-    print('static:')
-    print(os.listdir('website/static'))
-    print('samples:')
-    print(os.listdir('website/static/samples'))
-    print('U+4E00:')
-    print(os.listdir('website/static/samples/U+4E00'))
-    #global model
-    #answerList={}
-    #for idx in range(len(data)):
-    #  im = cv2.imdecode(np.array(data[str(idx+1)], dtype=np.uint8), cv2.IMREAD_UNCHANGED)
-    #  result=assessCustomImage(im, 5)
-    #  info={}
-    #  for kanji in result:
-    #    i='U+'+hex(ord(kanji)).upper()[2:]
-    #    info[kanji]=os.listdir('website\\static\\samples\\'+i)
-    #  answerList[str(idx+1)]=info
-#
-    #socketio.emit("answer", answerList)
+  global model
+  answerList={}
+  for idx in range(len(data)):
+    im = cv2.imdecode(np.array(data[str(idx+1)], dtype=np.uint8), cv2.IMREAD_UNCHANGED)
+    result=assessCustomImage(im, 5)
+    info={}
+    for kanji in result:
+      i='U+'+hex(ord(kanji)).upper()[2:]
+      info[kanji]=os.listdir('website/static/samples/'+i)
+    answerList[str(idx+1)]=info
+  socketio.emit("answer", answerList)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
