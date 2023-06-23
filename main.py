@@ -76,7 +76,8 @@ def assessCustomImage(image, numOfResponses=1):
 @socketio.event
 def askQuestion (data):
     print("fuck yeet")
-    os.listdir('.')
+    print(os.listdir('.'))
+    print(os.listdir('website'))
     #global model
     #answerList={}
     #for idx in range(len(data)):
