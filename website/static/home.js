@@ -16,6 +16,7 @@ socket.on("answer", function(data){
   totalQuestions=(Object.keys(data)).length;
   currQuestion=1;
   preloadImages(sampleImageData);
+  document.getElementById("loadingContainer").classList.add("hidden");
   displayAnswers(Object.keys(data["1"]));
   switchActiveAnswer(1,1);
 });
@@ -111,6 +112,11 @@ document.getElementById("submitCropButton").addEventListener("click", () => {
   }else{
     prepareForSubsequentQuestion();
   }
+  if(cropCount==4){
+    document.getElementById("loadingContainer").classList.remove("hidden");
+    document.getElementById("loadingContainer").style.animationPlayState="running";
+  }
+  cropCount=0;
   
 });
 
@@ -177,6 +183,7 @@ function prepareForSubsequentQuestion(){
   }
   document.getElementById("masterReferenceContainer").classList.add("hidden");
   document.getElementById("predContainer1").classList.remove("activePrediction");
+  document.getElementById("loadingContainer").style.animationDelay="0s";
 }
 
 function preloadImages(data){
