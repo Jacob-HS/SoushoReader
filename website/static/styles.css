@@ -83,6 +83,18 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+#aboutPage{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.aboutSampleImage{
+  width: 12vw;
+  height: 12vw;
+}
 #sampleImageRow1{
   padding: 4vh 0 2vh 0;
 }
@@ -361,10 +373,28 @@ body {
   margin:auto;
   display:flex;
   flex-direction: column;
-  margin-top: 10vh;
+  margin-top: 3vh;
+  margin-bottom:0;
   color: white;
   font-size: 3vh;
   line-height: 130%;
+}
+
+.aboutImageBoi{
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  width: 18vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.rightImage{
+  right:0;
+}
+
+.aboutImageBoi img{
+  width: 18vw;
 }
 
 .aboutText{

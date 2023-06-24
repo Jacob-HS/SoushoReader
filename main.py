@@ -85,7 +85,7 @@ def askQuestion (data):
       i='U+'+hex(ord(kanji)).upper()[2:]
       info[kanji]=os.listdir('website/static/samples/'+i)
     answerList[str(idx+1)]=info
-  socketio.emit("answer", answerList)
+  socketio.emit("answer", answerList, to=request.sid)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

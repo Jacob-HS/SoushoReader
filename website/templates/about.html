@@ -8,8 +8,9 @@
     overflow: auto;
   }
 </style>
-<a href="/"><img id="logoImage" src="https://fontmeme.com/permalink/230621/859ac3c803580f8759d3a9b6c947be1e.png"></a>
+<div style="width:100%; text-align: center;"><a href="/" style="text-align: center;"><img id="logoImage" src="https://fontmeme.com/permalink/230621/859ac3c803580f8759d3a9b6c947be1e.png" style="height: 20vh; margin-top:3vh; position: static;"></a></div>
 
+<div class="aboutImageBoi"><img src="static/aboutleft.png"></div>
 <div id="aboutTextContainer">
   <p class="aboutHeader">What is Deeproot?</p>
   <p class="aboutText">    Deeproot is a convolutional neural network that has been trained to recognize cursive kanji script (<span class="kanjiText">草書</span>).
@@ -21,9 +22,44 @@
     This style features very low stroke count, with many kanji just being written in a single stroke. As a result,
      it can be written very quickly, but is challenging to read for the unaccustomed. The average Japanese 
      person can read a handful of cursive kanji, but many kanji undergo such drastic changes in shape that 
-     they end up unrecognizable to the untrained eye. 
-  </p>
-  <img src="static/newtest.jpg"/>
+     they end up unrecognizable to the untrained eye. <br/><br/>
 
+     Example of the kanji 書 (write) in 3 different styles:<br/>
+  </p>
+  <div class="sampleImageRow">
+    <div>
+      <p style="width:12vw; text-align: center; margin-bottom: 1vh;">Computer font:</p>
+      <img class="aboutSampleImage"/ src="static/goth.png">
+    </div>
+    <div>
+      <p style="width:12vw; text-align: center; margin-bottom: 1vh;">Handwritten:</p>
+      <img class="aboutSampleImage"/ src="static/pen.png">
+    </div>
+    <div>
+      <p style="width:12vw; text-align: center; margin-bottom: 1vh;">Full-cursive:</p>
+      <img class="aboutSampleImage"/ src="static/sousho.png">
+    </div>
+  </div>
+  <br/>
+  <p class="aboutHeader">Limitations</p>
+  <p class="aboutText">
+    Deeproot is a convolutional neural network trained on over 350,000 images spanning 1826 unique kanji. 
+    This means that any kanji outside those 1826 will not be answerable by Deeproot. Data for roughly 2000 other kanji is availible, 
+    but the quantity of images for each remaining kanji is relatively low. Deeproot is only trained on kanji where 80 or more images
+    were availible. Nearly all of the images were sourced from Chinese collections due to the low quality nature of availible 
+    Japanese ones. The most prominent issue with Japanese datasets was the large presence of non-full-cursive kanji which introduced
+    too much noise in the model's training.</p>
+  <p class="aboutText">
+    Full-cursive kanji does not always look the same for any particular kanji. Beyond handwriting's inherent nature to vary from 
+    person to person, full-cursive kanji is often found in calligraphy which is a highly expressive artform. This causes stylistic 
+    variances that the model might not have been exposed to in training. The model achieved ~90% top-5 accuracy when tested on 9,000 
+    unseen images. For cherry picked "typical" writing styles, near 100% accuracy is achievable, but for cherry picked "quirky" styles
+    this number drops to ~20%.
+  </p>
+  <p class="aboutText">
+    The dataset, regularization methods, and AI architecture are still currently undergoing changes to improve accuracy and versatility. 
+    I believe there is still much room for improvement. 
+  </p><br/>
 </div>
+<div class="aboutImageBoi rightImage"><img src="static/aboutright.png"></div>
 {% endblock %}
