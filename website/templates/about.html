@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Deeproot - About{% endblock %}
+
+{% block content %}
+<style>
+  body{
+    overflow: auto;
+  }
+</style>
+<a href="/"><img id="logoImage" src="https://fontmeme.com/permalink/230621/859ac3c803580f8759d3a9b6c947be1e.png"></a>
+
+<div id="aboutTextContainer">
+  <p class="aboutHeader">What is Deeproot?</p>
+  <p class="aboutText">    Deeproot is a convolutional neural network that has been trained to recognize cursive kanji script (<span class="kanjiText">草書</span>).
+    It utilizes deep-learning techniques to interpret <span class="kanjiText">草書</span> (lit. Grass Script), hence the name "Deeproot". 
+    You can upload your own image of cursive kanji and crop it to fit the character(s) you want Deeproot to interpret.
+  </p><br/>
+  <p class="aboutHeader">What is 草書?</p>
+  <p class="aboutText">   "草書", "full-cursive", "highly-cursive", and "grass script" all refer to the same style of writing kanji.
+    This style features very low stroke count, with many kanji just being written in a single stroke. As a result,
+     it can be written very quickly, but is challenging to read for the unaccustomed. The average Japanese 
+     person can read a handful of cursive kanji, but many kanji undergo such drastic changes in shape that 
+     they end up unrecognizable to the untrained eye. 
+  </p>
+  <img src="static/newtest.jpg"/>
+
+</div>
+{% endblock %}

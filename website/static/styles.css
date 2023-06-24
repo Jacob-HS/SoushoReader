@@ -345,6 +345,42 @@ body {
   animation-play-state: paused;
 }
 
+#aboutContainer{
+  position: absolute;
+  right: 1vw;
+  top: 2vh;
+}
+
+#aboutContainer a{
+  color: white;
+  font-size: 3vh;
+}
+
+#aboutTextContainer{
+  width: 60vw;
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  color: white;
+  font-size: 3vh;
+  line-height: 130%;
+}
+
+.aboutText{
+  text-indent: 5%;
+}
+
+.kanjiText{
+  font-size: 3vh;
+}
+
+.aboutHeader{
+  font-size: 5vh;
+  border-bottom: 1px solid white;
+  display: inline-block;
+}
+
 #cropPopupContainer {
   background-color: rgb(180, 180, 180);
   position: relative;
