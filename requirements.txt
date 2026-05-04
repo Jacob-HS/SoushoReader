@@ -36,6 +36,7 @@ Flask-SQLAlchemy==3.0.3
 fonttools==4.39.3
 fqdn==1.5.1
 gevent==26.4.0
+gevent-websocket==0.10.1
 greenlet==3.5.0
 gunicorn==20.1.0
 h11==0.14.0
